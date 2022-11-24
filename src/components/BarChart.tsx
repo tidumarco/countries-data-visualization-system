@@ -1,18 +1,24 @@
-import React, { useEffect } from "react";
+import React, { ReactEventHandler, useEffect, useState } from "react";
 import { Chart as ChartJS, registerables } from "chart.js";
 import { Chart } from "react-chartjs-2";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../app/store";
 import { fetchCountriesThunk } from "../app/slices/countriesSlice";
+import { Button, Menu, MenuItem } from "@mui/material";
 
 ChartJS.register(...registerables);
 
 function BarChart() {
   const { countries } = useSelector((state: RootState) => state);
   const dispatch = useDispatch<AppDispatch>();
-  
+  const [region, setRegion] = useState("");
+  console.log("REGION PREV:", region);
+  function handleRegion(e: any) {
+    setRegion(e.target.value);
+  }
+
   const names = countries.items.map((country) => {
-    if (country.region === "Europe") {
+    if (country.region === region) {
       return country.name.common;
     }
   });
@@ -24,7 +30,7 @@ function BarChart() {
     }
   }
   const population = countries.items.map((country) => {
-    if (country.region === "Europe" && country.population != null) {
+    if (country.region === region && country.population != null) {
       return country.population;
     }
   });
@@ -49,14 +55,20 @@ function BarChart() {
         backgroundColor: "rgb(255, 99, 132)",
         borderColor: "rgb(255, 99, 132)",
         data: population,
-		responsive: true,
+        responsive: true,
       },
     ],
-    
   };
   return (
-    <div className="chart-container" style={{ position: 'relative', height:'80vh', width:'200vw'}}>
+    <div
+      className="chart-container"
+      style={{ position: "relative", height: "80vh", width: "200vw" }}
+    >
       <Chart data={data} type={"line"} />
+	  <Button value="Europe" onClick={handleRegion}>EUROPE</Button>
+	  <Button value="Americas" onClick={handleRegion}>AMERICAS</Button>
+	  <Button value="Asia" onClick={handleRegion}>ASIA</Button>
+	  <Button value="Oceania" onClick={handleRegion}>OCEANIA</Button>
     </div>
   );
 }

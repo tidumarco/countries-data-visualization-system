@@ -1,4 +1,4 @@
-# Frontend project - read carefully.
+# Countries Data Visualization System- read carefully.
 ## Installation
 
 You should use either `npm` or `yarn` but not both. It's recommended to use `yarn`
@@ -23,8 +23,6 @@ yarn start
 
 * Redux
 * Redux-thunk
-* Redux-saga
-* React-router
 * TypeScript
 * Prettier
 * ESLint
