@@ -9,16 +9,16 @@ import { Button } from "@mui/material";
 ChartJS.register(...registerables);
 
 function BarChart() {
-	const { countries } = useSelector((state: RootState) => state);
-	const dispatch = useDispatch<AppDispatch>();
-	const [region, setRegion] = useState("");
-	useEffect(() => {
-	  dispatch(fetchCountriesThunk());
-	}, [dispatch]);
+  const { countries } = useSelector((state: RootState) => state);
+  const dispatch = useDispatch<AppDispatch>();
+  const [region, setRegion] = useState("");
+  useEffect(() => {
+    dispatch(fetchCountriesThunk());
+  }, [dispatch]);
 
-  
   function handleRegion(e: any) {
     setRegion(e.target.value);
+    dispatch(handleSort(0));
   }
 
   const names = countries.items.map((country) => {
@@ -46,7 +46,6 @@ function BarChart() {
     }
   }
 
-
   const data = {
     type: "Bar",
     labels: names,
@@ -62,7 +61,7 @@ function BarChart() {
   };
   return (
     <div className="chartcontainer">
-      <Chart data={data} type={"line"} />
+      <Chart data={data} type={"bar"} />
       <Button value="Europe" onClick={handleRegion}>
         EUROPE
       </Button>
@@ -75,7 +74,6 @@ function BarChart() {
       <Button value="Oceania" onClick={handleRegion}>
         OCEANIA
       </Button>
-	  <Button onClick={() => dispatch(handleSort(0))}>SORT</Button>
     </div>
   );
 }

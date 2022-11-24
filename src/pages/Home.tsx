@@ -12,7 +12,7 @@ export default function Home() {
     setSearch(e.target.value);
   };
   const { countries } = useSelector((state: RootState) => state);
-  
+
   const filteredCountry = countries.items.filter((country) => {
     const searchCountry = search.toLowerCase();
     const countryName = country.name.common.toLowerCase();
@@ -20,11 +20,9 @@ export default function Home() {
   });
   return (
     <>
-      <Box sx={{ display: "column" }}>
-        <BarChart />
-        <SearchBar handleChange={onChange} />
-        <CountryTable filter={filteredCountry} />
-      </Box>
+      <BarChart />
+      <SearchBar handleChange={onChange} />
+      <CountryTable filter={filteredCountry} />
     </>
   );
 }
