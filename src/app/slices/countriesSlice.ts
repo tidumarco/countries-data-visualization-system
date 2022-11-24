@@ -1,61 +1,61 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import axios from 'axios'
+import axios from "axios";
 
-import { Country } from '../../types'
+import { Country } from "../../types";
 
 export interface countriesState {
-  items: Country[]
-  isLoading: boolean
+  items: Country[];
+  isLoading: boolean;
 }
 
 const initialState: countriesState = {
   items: [],
   isLoading: false,
-}
+};
 
 export const fetchCountriesThunk = createAsyncThunk(
-  'countries/fetch',
+  "countries/fetch",
   async () => {
     const url =
-      'https://restcountries.com/v3.1/all?fields=name,region,capital,population,flags,languages,cca2,cca3'
-    const response = await axios.get(url)
+      "https://restcountries.com/v3.1/all?fields=name,region,capital,population,flags,languages,cca2,cca3,currencies,subregion,latlng,area,coatOfArms";
+    const response = await axios.get(url);
 
     return {
       data: response.data as Country[],
       status: response.status,
-    }
+    };
   }
-)
+);
 
 function compare(a: Country, b: Country) {
   if (a.name.common < b.name.common) {
-    return -1
+    return -1;
   }
   if (a.name.common > b.name.common) {
-    return 1
+    return 1;
   }
-  return 0
+  return 0;
 }
 
 export const countriesSlice = createSlice({
-  name: 'country',
+  name: "country",
   initialState,
   reducers: {
     handleSort: (state, action) => {
-      const sortedItems = state.items.sort(compare)
-      state.items = sortedItems
+      const sortedItems = state.items.sort(compare);
+      state.items = sortedItems;
     },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchCountriesThunk.pending, (state) => {
-      state.isLoading = true
-    })
+      state.isLoading = true;
+    });
     builder.addCase(fetchCountriesThunk.fulfilled, (state, action) => {
-      state.items = action.payload.data
-      state.isLoading = false
-    })
+      state.items = action.payload.data;
+      state.isLoading = false;
+    });
   },
-})
-export const { handleSort } = countriesSlice.actions
-export default countriesSlice.reducer
+});
+export const { handleSort } = countriesSlice.actions;
+export default countriesSlice.reducer;

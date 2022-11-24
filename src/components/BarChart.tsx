@@ -3,16 +3,20 @@ import { Chart as ChartJS, registerables } from "chart.js";
 import { Chart } from "react-chartjs-2";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../app/store";
-import { fetchCountriesThunk } from "../app/slices/countriesSlice";
-import { Button, Menu, MenuItem } from "@mui/material";
+import { fetchCountriesThunk, handleSort } from "../app/slices/countriesSlice";
+import { Button } from "@mui/material";
 
 ChartJS.register(...registerables);
 
 function BarChart() {
-  const { countries } = useSelector((state: RootState) => state);
-  const dispatch = useDispatch<AppDispatch>();
-  const [region, setRegion] = useState("");
-  console.log("REGION PREV:", region);
+	const { countries } = useSelector((state: RootState) => state);
+	const dispatch = useDispatch<AppDispatch>();
+	const [region, setRegion] = useState("");
+	useEffect(() => {
+	  dispatch(fetchCountriesThunk());
+	}, [dispatch]);
+
+  
   function handleRegion(e: any) {
     setRegion(e.target.value);
   }
@@ -42,9 +46,6 @@ function BarChart() {
     }
   }
 
-  useEffect(() => {
-    dispatch(fetchCountriesThunk());
-  }, [dispatch]);
 
   const data = {
     type: "Bar",
@@ -60,15 +61,21 @@ function BarChart() {
     ],
   };
   return (
-    <div
-      className="chart-container"
-      style={{ position: "relative", height: "80vh", width: "200vw" }}
-    >
+    <div className="chartcontainer">
       <Chart data={data} type={"line"} />
-	  <Button value="Europe" onClick={handleRegion}>EUROPE</Button>
-	  <Button value="Americas" onClick={handleRegion}>AMERICAS</Button>
-	  <Button value="Asia" onClick={handleRegion}>ASIA</Button>
-	  <Button value="Oceania" onClick={handleRegion}>OCEANIA</Button>
+      <Button value="Europe" onClick={handleRegion}>
+        EUROPE
+      </Button>
+      <Button value="Americas" onClick={handleRegion}>
+        AMERICAS
+      </Button>
+      <Button value="Asia" onClick={handleRegion}>
+        ASIA
+      </Button>
+      <Button value="Oceania" onClick={handleRegion}>
+        OCEANIA
+      </Button>
+	  <Button onClick={() => dispatch(handleSort(0))}>SORT</Button>
     </div>
   );
 }
