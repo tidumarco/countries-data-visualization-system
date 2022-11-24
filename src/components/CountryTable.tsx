@@ -34,7 +34,7 @@ export default function CountryTable({ filter }: BasicTable) {
             <TableCell>Subregion</TableCell>
             <TableCell>Languages</TableCell>
             <TableCell>Area</TableCell>
-            <TableCell>Latitude and longitude</TableCell>
+            <TableCell>Lat. and long.</TableCell>
             <TableCell>Currencies</TableCell>
           </TableRow>
         </TableHead>

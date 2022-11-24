@@ -1,14 +1,16 @@
-import React, { ReactEventHandler, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Chart as ChartJS, registerables } from "chart.js";
 import { Chart } from "react-chartjs-2";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../app/store";
 import { fetchCountriesThunk, handleSort } from "../app/slices/countriesSlice";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
+import { BarChart } from "@mui/icons-material";
+import CountryTable from "./CountryTable";
 
 ChartJS.register(...registerables);
 
-function BarChart() {
+function PopulationChart() {
   const { countries } = useSelector((state: RootState) => state);
   const dispatch = useDispatch<AppDispatch>();
   const [region, setRegion] = useState("");
@@ -46,14 +48,18 @@ function BarChart() {
     }
   }
 
+  const randomNum = () => Math.floor(Math.random() * (235 - 52 + 1) + 52);
+
+  const randomRGB = () => `rgb(${randomNum()}, ${randomNum()}, ${randomNum()})`;
+
   const data = {
     type: "Bar",
     labels: names,
     datasets: [
       {
         label: "Population",
-        backgroundColor: "rgb(255, 99, 132)",
-        borderColor: "rgb(255, 99, 132)",
+        backgroundColor: randomRGB,
+        borderColor: "rgb(0, 0, 0)",
         data: population,
         responsive: true,
       },
@@ -61,7 +67,8 @@ function BarChart() {
   };
   return (
     <div className="chartcontainer">
-      <Chart data={data} type={"bar"} />
+	<Typography>REGION:{region}</Typography>
+	<Typography>DATA: Population</Typography>
       <Button value="Europe" onClick={handleRegion}>
         EUROPE
       </Button>
@@ -74,8 +81,9 @@ function BarChart() {
       <Button value="Oceania" onClick={handleRegion}>
         OCEANIA
       </Button>
+      <Chart data={data} type={"bar"} />
     </div>
   );
 }
 
-export default BarChart;
+export default PopulationChart;

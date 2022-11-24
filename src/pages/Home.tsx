@@ -2,9 +2,10 @@ import { Box } from "@mui/material";
 import React, { ChangeEvent, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
-import BarChart from "../components/BarChart";
+import PopulationChart from "../components/PopulationChart";
 import CountryTable from "../components/CountryTable";
 import SearchBar from "../components/SearchBar";
+import AreaChart from "../components/AreaChart";
 
 export default function Home() {
   const [search, setSearch] = useState("");
@@ -20,9 +21,10 @@ export default function Home() {
   });
   return (
     <>
-      <BarChart />
-      <SearchBar handleChange={onChange} />
-      <CountryTable filter={filteredCountry} />
+      <PopulationChart />
+	  <AreaChart />
+      {/* <SearchBar handleChange={onChange} />
+      <CountryTable filter={filteredCountry} /> */}
     </>
   );
 }
