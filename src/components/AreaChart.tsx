@@ -1,10 +1,10 @@
 import React, { ReactEventHandler, useEffect, useState } from "react";
 import { Chart as ChartJS, registerables } from "chart.js";
-import { Chart } from "react-chartjs-2";
+import { Bar, Chart, Scatter } from "react-chartjs-2";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../app/store";
 import { fetchCountriesThunk, handleSort } from "../app/slices/countriesSlice";
-import { Button, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 
 ChartJS.register(...registerables);
 
@@ -62,12 +62,13 @@ function AreaChart() {
         borderColor: "rgb(0, 0, 0)",
         data: area,
         responsive: true,
+        maintainAspectRatio: false,
       },
     ],
   };
 
   return (
-    <div className="chart-container">
+    <Box className="chart-container" sx={{ height: "1000px", width: "1000px" }}>
       <Typography>REGION:{region}</Typography>
       <Typography>DATA: Area</Typography>
       <Button value="Europe" onClick={handleRegion}>
@@ -82,8 +83,8 @@ function AreaChart() {
       <Button value="Oceania" onClick={handleRegion}>
         OCEANIA
       </Button>
-      <Chart data={data} type={"pie"} />
-    </div>
+      <Chart data={data} type={"pie"}/>
+    </Box>
   );
 }
 
