@@ -10,6 +10,7 @@ export default function DataCountry(props: any) {
   useEffect(() => (document.title = props.title), [props.title]);
   const [search, setSearch] = useState("");
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
     setSearch(e.target.value);
   };
 
@@ -26,6 +27,13 @@ export default function DataCountry(props: any) {
     const countryName = country.name.common.toLowerCase();
     return searchCountry ? countryName.startsWith(searchCountry) : country;
   });
+  if (!search) {
+    return (
+      <div className="App">
+        <SearchAppBar handleChange={onChange} />
+      </div>
+    );
+  }
   return (
     <div className="App">
       <SearchAppBar handleChange={onChange} />

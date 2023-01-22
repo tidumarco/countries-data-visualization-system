@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import AppBar from "@mui/material/AppBar";
-import { Box, Toolbar, TextField, Typography, Button } from "@mui/material";
+import { Box, Toolbar, TextField, Typography } from "@mui/material";
 
 import { SearchAppBarProps } from "../types";
 
@@ -20,7 +20,7 @@ export default function SearchAppBar({ handleChange }: SearchAppBarProps) {
               padding: "10px",
             }}
           >
-            Data by country
+            Please search for a country...
           </Typography>
 
           <TextField
@@ -31,7 +31,6 @@ export default function SearchAppBar({ handleChange }: SearchAppBarProps) {
             }}
             onChange={handleChange}
           />
-          <Button role="button" tabIndex={0} className="shopping-cart"></Button>
         </Toolbar>
       </AppBar>
     </Box>

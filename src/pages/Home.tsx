@@ -14,9 +14,6 @@ export default function Home(props: any) {
         <li>
           <Link to="data-by-country">Data by country</Link>
         </li>
-        <li>
-          <Link to="data-by-capital">Data by capital</Link>
-        </li>
       </ul>
     </>
   );

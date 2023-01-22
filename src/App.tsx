@@ -4,7 +4,6 @@ import { Routes, Route, Outlet } from "react-router-dom";
 import Home from "./pages/Home";
 import DataRegion from "./pages/DataRegion";
 import DataCountry from "./pages/DataCountry";
-import DataCapital from "./pages/DataCapital";
 import RegionBars from "./pages/RegionBars";
 import NoMatch from "./pages/NoMatch";
 import RegionPie from "./pages/RegionPie";
@@ -27,10 +26,6 @@ export default function App() {
         <Route
           path="data-by-country"
           element={<DataCountry title="Data Country" />}
-        />
-        <Route
-          path="data-by-capital"
-          element={<DataCapital title="Data Capital" />}
         />
       </Routes>
     </div>
