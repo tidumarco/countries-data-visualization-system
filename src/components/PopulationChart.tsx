@@ -5,8 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../app/store";
 import { fetchCountriesThunk, handleSort } from "../app/slices/countriesSlice";
 import { Button, Typography } from "@mui/material";
-import { BarChart } from "@mui/icons-material";
-import CountryTable from "./CountryTable";
 
 ChartJS.register(...registerables);
 
@@ -67,8 +65,6 @@ function PopulationChart() {
   };
   return (
     <div className="chartcontainer">
-	<Typography>REGION:{region}</Typography>
-	<Typography>DATA: Population</Typography>
       <Button value="Europe" onClick={handleRegion}>
         EUROPE
       </Button>
@@ -81,6 +77,8 @@ function PopulationChart() {
       <Button value="Oceania" onClick={handleRegion}>
         OCEANIA
       </Button>
+      <Typography>REGION: {region}</Typography>
+      <Typography>DATA: Population</Typography>
       <Chart data={data} type={"bar"} />
     </div>
   );

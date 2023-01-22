@@ -1,14 +1,17 @@
-import * as React from 'react'
-import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
+import * as React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 
-import App from './App'
-import { store } from './app/store'
+import App from "./App";
+import { store } from "./app/store";
 
 const WithProvider = () => (
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>
-)
+);
 
-ReactDOM.render(<WithProvider />, document.getElementById('root'))
+ReactDOM.render(<WithProvider />, document.getElementById("root"));

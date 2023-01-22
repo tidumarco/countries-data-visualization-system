@@ -69,8 +69,6 @@ function AreaChart() {
 
   return (
     <Box className="chart-container" sx={{ height: "1000px", width: "1000px" }}>
-      <Typography>REGION:{region}</Typography>
-      <Typography>DATA: Area</Typography>
       <Button value="Europe" onClick={handleRegion}>
         EUROPE
       </Button>
@@ -83,7 +81,9 @@ function AreaChart() {
       <Button value="Oceania" onClick={handleRegion}>
         OCEANIA
       </Button>
-      <Chart data={data} type={"pie"}/>
+      <Typography>REGION: {region}</Typography>
+      <Typography>DATA: Area</Typography>
+      <Chart data={data} type={"pie"} />
     </Box>
   );
 }
