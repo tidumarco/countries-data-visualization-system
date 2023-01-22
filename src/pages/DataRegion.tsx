@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Typography } from "@mui/material";
 import { Link, Outlet } from "react-router-dom";
 
-export default function DataRegion() {
+export default function DataRegion(props: any) {
+  useEffect(() => (document.title = props.title), [props.title]);
   const linkStyle = {
     textDecoration: "none",
   };
