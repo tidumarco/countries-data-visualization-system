@@ -1,6 +1,7 @@
-import React, { ReactEventHandler, useEffect, useState } from "react";
+/* eslint-disable array-callback-return */
+import React, { useEffect, useState } from "react";
 import { Chart as ChartJS, registerables } from "chart.js";
-import { Bar, Chart, Scatter } from "react-chartjs-2";
+import { Chart } from "react-chartjs-2";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../app/store";
 import { fetchCountriesThunk, handleSort } from "../app/slices/countriesSlice";
@@ -9,7 +10,9 @@ import { Box, Button, Typography } from "@mui/material";
 ChartJS.register(...registerables);
 
 function AreaChart() {
-  const { countries } = useSelector((state: RootState) => state);
+  const { countries } = useSelector((state: RootState) => {
+    return state;
+  });
   const dispatch = useDispatch<AppDispatch>();
   const [region, setRegion] = useState("");
 

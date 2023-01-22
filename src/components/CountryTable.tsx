@@ -8,17 +8,11 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Typography,
 } from "@mui/material";
-
-import { useDispatch } from "react-redux";
 
 import { BasicTable, Country } from "../types";
 
-import { AppDispatch } from "../app/store";
-
 export default function CountryTable({ filter }: BasicTable) {
-  const dispatch = useDispatch<AppDispatch>();
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -80,12 +74,18 @@ export default function CountryTable({ filter }: BasicTable) {
                   })}
                 </ul>
               </TableCell>
-              <TableCell>{country.area}</TableCell>
-              <TableCell>{country.latlng}</TableCell>
-			  <TableCell>
+              <TableCell>{country.area.toFixed(2)}</TableCell>
+              <TableCell>
+                {country.latlng[0].toFixed(1)} {country.latlng[1].toFixed(1)}
+              </TableCell>
+              <TableCell>
                 <ul>
                   {Object.values(country.currencies).map((curr: any) => {
-                    return <li key={JSON.stringify(curr)}>{curr.name} ({curr.symbol})</li>;
+                    return (
+                      <li key={JSON.stringify(curr)}>
+                        {curr.name} ({curr.symbol})
+                      </li>
+                    );
                   })}
                 </ul>
               </TableCell>

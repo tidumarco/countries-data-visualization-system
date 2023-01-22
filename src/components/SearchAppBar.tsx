@@ -11,7 +11,7 @@ export default function SearchAppBar({ handleChange }: SearchAppBarProps) {
       <AppBar position="static">
         <Toolbar>
           <Typography
-            variant="h6"
+            variant="h5"
             noWrap
             component="div"
             sx={{
@@ -20,7 +20,7 @@ export default function SearchAppBar({ handleChange }: SearchAppBarProps) {
               padding: "10px",
             }}
           >
-            Countries
+            Data by country
           </Typography>
 
           <TextField

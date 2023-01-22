@@ -1,16 +1,25 @@
-import React, { ChangeEvent, useState } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../app/store";
+import React, { ChangeEvent, useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCountriesThunk } from "../app/slices/countriesSlice";
+import { AppDispatch, RootState } from "../app/store";
 import CountryTable from "../components/CountryTable";
 import SearchAppBar from "../components/SearchAppBar";
-import SearchBar from "../components/SearchAppBar";
 
 export default function DataCountry() {
   const [search, setSearch] = useState("");
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(fetchCountriesThunk());
+  }, [dispatch]);
+
   const { countries } = useSelector((state: RootState) => state);
+
   const filteredCountry = countries.items.filter((country) => {
     const searchCountry = search.toLowerCase();
     const countryName = country.name.common.toLowerCase();
@@ -18,7 +27,9 @@ export default function DataCountry() {
   });
   return (
     <div className="App">
-      <h1>Data by Country</h1>
+      <Helmet>
+        <title>Data Country</title>
+      </Helmet>
       <SearchAppBar handleChange={onChange} />
       <CountryTable filter={filteredCountry} />
     </div>
