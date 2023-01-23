@@ -21,7 +21,9 @@ export default function Home(props: any) {
   };
   return (
     <Paper className="paper-background" style={paperStyle}>
-      <Typography variant="h3">Welcome to our system</Typography>
+      <Typography display="flex" variant="h3">
+        Welcome to our system
+      </Typography>
       <Typography variant="body2">
         <ul>
           <li>
