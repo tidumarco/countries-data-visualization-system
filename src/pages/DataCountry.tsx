@@ -31,7 +31,7 @@ export default function DataCountry(props: any) {
     setSearch(e.target.value);
   };
   const debounceSearch = useDebounceValue(search);
-  console.log("DEBOUNCE", debounceSearch);
+
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {

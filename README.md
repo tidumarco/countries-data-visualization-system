@@ -19,17 +19,6 @@ yarn start
 
 <br />
 
-### Features that come with this template
-
-* Redux
-* Redux-thunk
-* TypeScript
-* Prettier
-* ESLint
-* Husky & lint-staged
-
-<br />
-
 1. **Tech stack:**
 
    1. React
