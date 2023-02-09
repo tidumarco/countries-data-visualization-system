@@ -1,4 +1,4 @@
-import { Paper, Typography } from "@mui/material";
+import { Paper, Typography, Box } from "@mui/material";
 import React, { useEffect } from "react";
 import Image from "../images/world.jpeg";
 import { Link } from "react-router-dom";
@@ -21,23 +21,23 @@ export default function Home(props: any) {
   };
   return (
     <Paper className="paper-background" style={paperStyle}>
-      <Typography display="flex" variant="h3">
-        Welcome to our system
-      </Typography>
-      <Typography variant="body2">
-        <ul>
-          <li>
-            <Link style={linkStyle} to="data-by-region">
-              Data by region
-            </Link>
-          </li>
-          <li>
-            <Link style={linkStyle} to="data-by-country">
-              Data by country
-            </Link>
-          </li>
-        </ul>
-      </Typography>
+      <Box display="flex" flexDirection="row" alignContent="center">
+        <Typography variant="h3">Welcome to our system</Typography>
+        <Typography variant="body2">
+          <ul>
+            <li>
+              <Link style={linkStyle} to="data-by-region">
+                Data by region
+              </Link>
+            </li>
+            <li>
+              <Link style={linkStyle} to="data-by-country">
+                Data by country
+              </Link>
+            </li>
+          </ul>
+        </Typography>
+      </Box>
     </Paper>
   );
 }
