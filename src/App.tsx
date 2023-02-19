@@ -14,19 +14,13 @@ export default function App() {
       <Outlet />
       <Routes>
         <Route path="/" element={<Home title="Homepage" />} />
-        <Route
-          path="data-by-region"
-          element={<DataRegion title="Data region" />}
-        >
+        <Route path="data-by-region" element={<DataRegion />}>
           <Route path="region-bars" element={<RegionBars />} />
           <Route path="pie-chart" element={<RegionPie />} />
 
           <Route path="*" element={<NoMatch />} />
         </Route>
-        <Route
-          path="data-by-country"
-          element={<DataCountry title="Data Country" />}
-        />
+        <Route path="data-by-country" element={<DataCountry />} />
       </Routes>
     </div>
   );

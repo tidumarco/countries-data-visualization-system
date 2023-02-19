@@ -4,7 +4,6 @@ import { Chart } from "react-chartjs-2";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../app/store";
 import { fetchCountriesThunk, handleSort } from "../app/slices/countriesSlice";
-import { Button, Typography } from "@mui/material";
 
 ChartJS.register(...registerables);
 
@@ -21,6 +20,7 @@ function PopulationChart() {
     dispatch(handleSort(0));
   }
 
+  // eslint-disable-next-line array-callback-return
   const names = countries.items.map((country) => {
     if (country.region === region) {
       return country.name.common;
@@ -33,6 +33,7 @@ function PopulationChart() {
       i--;
     }
   }
+  // eslint-disable-next-line array-callback-return
   const population = countries.items.map((country) => {
     if (country.region === region && country.population != null) {
       return country.population;
@@ -64,22 +65,54 @@ function PopulationChart() {
     ],
   };
   return (
-    <div className="chartcontainer">
-      <Button value="Europe" onClick={handleRegion}>
-        EUROPE
-      </Button>
-      <Button value="Americas" onClick={handleRegion}>
-        AMERICAS
-      </Button>
-      <Button value="Asia" onClick={handleRegion}>
-        ASIA
-      </Button>
-      <Button value="Oceania" onClick={handleRegion}>
-        OCEANIA
-      </Button>
-      <Typography>REGION: {region}</Typography>
-      <Typography>DATA: Population</Typography>
-      <Chart data={data} type={"bar"} />
+    <div>
+      <div
+        className="p-6 inline-flex rounded-md shadow-sm flex justify-center w-screen"
+        role="group"
+      >
+        <button
+          type="button"
+          value="Europe"
+          onClick={handleRegion}
+          className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
+        >
+          Europe
+        </button>
+        <button
+          type="button"
+          value="Americas"
+          onClick={handleRegion}
+          className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
+        >
+          Americas
+        </button>
+        <button
+          type="button"
+          value="Asia"
+          onClick={handleRegion}
+          className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
+        >
+          Asia
+        </button>
+        <button
+          type="button"
+          value="Oceania"
+          onClick={handleRegion}
+          className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
+        >
+          Oceania
+        </button>
+      </div>
+      <div className="flex flex-col items-center">
+        <h5 className="p-6 flex justify-center w-screen text-xl font-bold dark:text-white">
+          Region: {region}
+        </h5>
+        <Chart
+          className="max-w-[75%] max-h-full bg-white"
+          data={data}
+          type={"bar"}
+        />
+      </div>
     </div>
   );
 }

@@ -1,43 +1,34 @@
-import { Paper, Typography, Box } from "@mui/material";
 import React, { useEffect } from "react";
-import Image from "../images/world.jpeg";
 import { Link } from "react-router-dom";
 
-import "../App.css";
-
 export default function Home(props: any) {
-  useEffect(() => (document.title = props.title), [props.title]);
+  //   useEffect(() => (document.title = props.title), [props.title]);
 
-  const linkStyle = {
-    textDecoration: "none",
-  };
-
-  const paperStyle = {
-    backgroundImage: `url(${Image})`,
-    backgroundSize: "cover",
-    width: "100vw",
-    height: "100vh",
-    display: "flex",
-  };
   return (
-    <Paper className="paper-background" style={paperStyle}>
-      <Box display="flex" flexDirection="row" alignContent="center">
-        <Typography variant="h3">Welcome to our system</Typography>
-        <Typography variant="body2">
-          <ul>
-            <li>
-              <Link style={linkStyle} to="data-by-region">
-                Data by region
-              </Link>
-            </li>
-            <li>
-              <Link style={linkStyle} to="data-by-country">
-                Data by country
-              </Link>
-            </li>
-          </ul>
-        </Typography>
-      </Box>
-    </Paper>
+    <div>
+      <h1 className="text-center pt-12 mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+        Welcome to our system
+      </h1>
+      <p className="mb-6 text-lg font-normal text-gray-800 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
+        Here at Flowbite we focus on markets where technology, innovation, and
+        capital can unlock long-term value and drive economic growth.
+      </p>
+
+      <div className="flex justify-center w-screen">
+        <Link
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+          to="data-by-region"
+        >
+          Data by region
+        </Link>
+
+        <Link
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+          to="data-by-country"
+        >
+          Data by country
+        </Link>
+      </div>
+    </div>
   );
 }
