@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Outlet } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
 import DataRegion from "./pages/DataRegion";
@@ -10,14 +10,12 @@ import RegionPie from "./pages/RegionPie";
 
 export default function App() {
   return (
-    <div className="App">
-      <Outlet />
+    <div>
       <Routes>
-        <Route path="/" element={<Home title="Homepage" />} />
+        <Route path="/" element={<Home />} />
         <Route path="data-by-region" element={<DataRegion />}>
           <Route path="region-bars" element={<RegionBars />} />
           <Route path="pie-chart" element={<RegionPie />} />
-
           <Route path="*" element={<NoMatch />} />
         </Route>
         <Route path="data-by-country" element={<DataCountry />} />

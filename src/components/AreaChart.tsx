@@ -72,7 +72,7 @@ function AreaChart() {
   return (
     <div>
       <div
-        className="p-6 inline-flex rounded-md shadow-sm flex justify-center w-screen"
+        className="mt-3 inline-flex rounded-md flex justify-center w-full"
         role="group"
       >
         <button
@@ -108,13 +108,13 @@ function AreaChart() {
           Oceania
         </button>
       </div>
-      <div className="flex flex-col items-center">
-        <h5 className="p-6 flex justify-center w-screen text-xl font-bold dark:text-white">
+      <div className="p-5 flex flex-col items-center justify-center max-h-[75%]">
+        <h2 className="pt-12 text-center mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
           Region: {region}
-        </h5>
+        </h2>
 
         <Chart
-          className="max-w-[75%] max-h-full h-full bg-white"
+          className="bg-white max-w-[75%] max-h-[89%]"
           data={data}
           type={"pie"}
         />
