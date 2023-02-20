@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-
+import background from "./images/background.jpeg";
 import Home from "./pages/Home";
 import DataRegion from "./pages/DataRegion";
 import DataCountry from "./pages/DataCountry";
@@ -10,7 +10,13 @@ import RegionPie from "./pages/RegionPie";
 
 export default function App() {
   return (
-    <div>
+    <div
+      className="bg-cover bg-fixed bg-center"
+      style={{
+        backgroundImage: `url(${background})`,
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="data-by-region" element={<DataRegion />}>
