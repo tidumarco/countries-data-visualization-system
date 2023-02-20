@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
-import BackButton from "../components/BackButton";
 
 export default function Home() {
   return (
