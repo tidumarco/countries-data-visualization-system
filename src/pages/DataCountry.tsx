@@ -23,8 +23,7 @@ const useDebounceValue = (value: string, time = 250) => {
   return debounceValue;
 };
 
-export default function DataCountry(props: any) {
-  useEffect(() => (document.title = props.title), [props.title]);
+export default function DataCountry() {
   const [search, setSearch] = useState("");
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -56,7 +55,7 @@ export default function DataCountry(props: any) {
         <h1 className="text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
           Data by country
         </h1>
-        <div className="m-2 flex flex-col items-center h-screen ">
+        <div className="m-2 flex flex-col items-center h-screen">
           <h5 className="text-center mb-6 text-lg font-normal text-gray-800 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
             Please search for a country...
           </h5>
