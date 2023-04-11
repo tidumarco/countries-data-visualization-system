@@ -24,7 +24,6 @@ yarn start
 
    3. TypeScript
 
-
 2. **Features:**
 
    1. Display countries graphs
