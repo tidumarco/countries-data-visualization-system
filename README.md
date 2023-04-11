@@ -26,8 +26,7 @@ yarn start
    2. Redux
 
    3. TypeScript
-
-
+   
 2. **Features:**
 
    1. Display countries graphs
