@@ -25,13 +25,11 @@ const useDebounceValue = (value: string, time = 250) => {
 
 export default function DataCountry() {
   const [search, setSearch] = useState("");
-
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     console.log(e.target.value);
     setSearch(e.target.value);
   };
   const debounceSearch = useDebounceValue(search);
-
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
