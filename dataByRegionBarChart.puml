@@ -1,0 +1,14 @@
+@startuml name
+actor User
+
+
+User -> "Data By Region": clicks on button
+"Data By Region" -> "Show Bar Chart": select chart type
+"Show Bar Chart" -> "User choose region": select region
+Frontend -> Redux : sends region name
+Redux -> API : sends region name
+API -> Redux : sends region data
+Redux -> "Show Bar Chart" : sends region
+"Show Bar Chart" -> "User": show chart
+
+@enduml

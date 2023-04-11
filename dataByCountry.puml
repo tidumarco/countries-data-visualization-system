@@ -1,0 +1,11 @@
+@startuml name
+actor User
+
+User -> SearchBar : enters country name
+SearchBar -> Frontend : validates country name
+Redux -> API : sends country name
+API -> Redux : sends country data
+Redux -> Frontend : sends country data
+Frontend -> User : displays country data
+
+@enduml

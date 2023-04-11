@@ -10,14 +10,11 @@ To install, run:
 ```bash
 yarn install
 ```
-
 To run the project, run
 
 ````bash
 yarn start
 ````
-
-<br />
 
 1. **Tech stack:**
 
