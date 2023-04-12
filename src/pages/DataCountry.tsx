@@ -7,30 +7,18 @@ import CountryTable from "../components/CountryTable";
 import SearchAppBar from "../components/SearchAppBar";
 import BackButton from "../components/BackButton";
 import Footer from "../components/Footer";
-const useDebounceValue = (value: string, time = 250) => {
-  const [debounceValue, setDebounceValue] = useState(value);
-
-  useEffect(() => {
-    const timeOut = setTimeout(() => {
-      setDebounceValue(value);
-    }, time);
-
-    return () => {
-      clearTimeout(timeOut);
-    };
-  }, [value, time]);
-
-  return debounceValue;
-};
+import { debounce } from "lodash";
 
 export default function DataCountry() {
   const [search, setSearch] = useState("");
+  const debounceSetSearch = debounce(setSearch, 300);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
-    setSearch(e.target.value);
+    const MIN_SEARCH_LENGTH = 3;
+    e.target.value.length < MIN_SEARCH_LENGTH
+      ? debounceSetSearch("")
+      : debounceSetSearch(e.target.value);
   };
-  const debounceSearch = useDebounceValue(search);
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -46,7 +34,7 @@ export default function DataCountry() {
     return searchCountry ? countryName.startsWith(searchCountry) : country;
   });
 
-  if (!debounceSearch) {
+  if (!search) {
     return (
       <>
         <div>
@@ -74,7 +62,7 @@ export default function DataCountry() {
         Data by country
       </h1>
       <div className="m-2 flex flex-col items-center justify-center ">
-        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+        <h5 className="text-center mb-6 text-lg font-normal text-gray-800 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
           Please search for a country...
         </h5>
         <SearchAppBar handleChange={onChange} />

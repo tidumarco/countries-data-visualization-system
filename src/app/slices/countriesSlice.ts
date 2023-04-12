@@ -17,8 +17,7 @@ const initialState: countriesState = {
 export const fetchCountriesThunk = createAsyncThunk(
   "countries/fetch",
   async () => {
-    const url =
-      "https://restcountries.com/v3.1/all?fields=name,region,capital,population,flags,languages,cca2,cca3,currencies,subregion,latlng,area,coatOfArms";
+    const url = "http://localhost:3001/countries";
     const response = await axios.get(url);
 
     return {
