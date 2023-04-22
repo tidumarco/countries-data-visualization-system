@@ -18,6 +18,19 @@ app.get("/countries", async (req, res) => {
     res.status(500).send("Error fetching data from API");
   }
 });
+app.get("/countries/:region", async (req, res) => {
+  const region = req.params.region;
+  try {
+    const response = await axios.get(
+      `https://restcountries.com/v3.1/region/${region}?fields=name,population`
+    );
+    const data = response.data;
+    res.send(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error fetching data from API");
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);

@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import React, { useEffect, useState } from "react";
 import { Chart as ChartJS, registerables } from "chart.js";
 import { Chart } from "react-chartjs-2";
@@ -20,7 +21,6 @@ function PopulationChart() {
     dispatch(handleSort(0));
   }
 
-  // eslint-disable-next-line array-callback-return
   const names = countries.items.map((country) => {
     if (country.region === region) {
       return country.name.common;
@@ -33,7 +33,6 @@ function PopulationChart() {
       i--;
     }
   }
-  // eslint-disable-next-line array-callback-return
   const population = countries.items.map((country) => {
     if (country.region === region && country.population != null) {
       return country.population;

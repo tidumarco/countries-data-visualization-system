@@ -26,6 +26,8 @@ export type Country = {
   subregion: string;
 };
 
+export type WorldCountries = Pick<Country, "region">;
+
 export type CountriesState = {
   items: Country[];
   isLoading: boolean;
