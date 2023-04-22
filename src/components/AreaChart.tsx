@@ -24,38 +24,29 @@ function AreaChart() {
     dispatch(handleSort(0));
   }
 
-  const names = countries.items.map((country) => {
-    if (country.region === region) {
-      return country.name.common;
-    }
-  });
+  const names = countries.items
+    .map((country) => {
+      if (country.region === region) {
+        return country.name.common;
+      }
+    })
+    .filter((name) => name !== undefined);
 
-  for (let i = 0; i < names.length; i++) {
-    if (names[i] === undefined) {
-      names.splice(i, 1);
-      i--;
-    }
-  }
-  const area = countries.items.map((country) => {
-    if (country.region === region && country.area != null) {
-      return country.area;
-    }
-  });
-
-  for (let i = 0; i < area.length; i++) {
-    //@ts-ignore
-    if (area[i] === undefined || area[i] < 0) {
-      area.splice(i, 1);
-      i--;
-    }
-  }
+  const area = countries.items
+    .map((country) => {
+      if (country.region === region && country.area !== undefined) {
+        return country.area;
+      }
+    })
+    .filter((a) => a !== undefined && a >= 0);
 
   const randomNum = () => Math.floor(Math.random() * (235 - 52 + 1) + 52);
 
   const randomRGB = () => `rgb(${randomNum()}, ${randomNum()}, ${randomNum()})`;
 
   const data = {
-    type: "Bar",
+    type: "Pie",
+    title: "Areas",
     labels: names,
     datasets: [
       {
@@ -109,15 +100,10 @@ function AreaChart() {
         </button>
       </div>
       <div className="p-5 flex flex-col items-center justify-center max-h-[75%]">
-        <h2 className="pt-12 text-center mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-          Region: {region}
+        <h2 className="pt-4 text-center mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          Areas of {region}
         </h2>
-
-        <Chart
-          className="bg-white max-w-[75%] max-h-[89%]"
-          data={data}
-          type={"pie"}
-        />
+        <Chart className="bg-white" data={data} type={"doughnut"} />
       </div>
     </div>
   );

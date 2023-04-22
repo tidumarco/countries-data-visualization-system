@@ -12,6 +12,7 @@ function PopulationChart() {
   const { countries } = useSelector((state: RootState) => state);
   const dispatch = useDispatch<AppDispatch>();
   const [region, setRegion] = useState("");
+
   useEffect(() => {
     dispatch(fetchCountriesThunk());
   }, [dispatch]);
@@ -20,31 +21,21 @@ function PopulationChart() {
     setRegion(e.target.value);
     dispatch(handleSort(0));
   }
+  const names = countries.items
+    .map((country) => {
+      if (country.region === region) {
+        return country.name.common;
+      }
+    })
+    .filter((name) => name !== undefined);
 
-  const names = countries.items.map((country) => {
-    if (country.region === region) {
-      return country.name.common;
-    }
-  });
-
-  for (let i = 0; i < names.length; i++) {
-    if (names[i] === undefined) {
-      names.splice(i, 1);
-      i--;
-    }
-  }
-  const population = countries.items.map((country) => {
-    if (country.region === region && country.population != null) {
-      return country.population;
-    }
-  });
-
-  for (let i = 0; i < population.length; i++) {
-    if (population[i] === undefined) {
-      population.splice(i, 1);
-      i--;
-    }
-  }
+  const population = countries.items
+    .map((country) => {
+      if (country.region === region && country.population != null) {
+        return country.population;
+      }
+    })
+    .filter((population) => population !== undefined);
 
   const randomNum = () => Math.floor(Math.random() * (235 - 52 + 1) + 52);
 
@@ -55,7 +46,7 @@ function PopulationChart() {
     labels: names,
     datasets: [
       {
-        label: "Population",
+        label: `${region} Population`,
         backgroundColor: randomRGB,
         borderColor: "rgb(0, 0, 0)",
         data: population,
@@ -63,6 +54,7 @@ function PopulationChart() {
       },
     ],
   };
+
   return (
     <div>
       <div
@@ -102,15 +94,11 @@ function PopulationChart() {
           Oceania
         </button>
       </div>
-      <div className="p-2 flex flex-col items-center justify-center">
-        <h2 className="pt-12 text-center mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+      <div className="p-4 flex-col justify-center">
+        {/* <h2 className="p-2 w-1/5 text-center mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white bg-white">
           Region: {region}
-        </h2>
-        <Chart
-          className="bg-white max-w-[75%] max-h-[80%]"
-          data={data}
-          type={"bar"}
-        />
+        </h2> */}
+        <Chart className="bg-white" data={data} type={"bar"} />
       </div>
     </div>
   );
