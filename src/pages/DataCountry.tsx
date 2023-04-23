@@ -11,13 +11,13 @@ import { debounce } from "lodash";
 
 export default function DataCountry() {
   const [search, setSearch] = useState("");
-  //   const [error, setError] = useState("");
+  const [error, setError] = useState("");
   const dispatch = useDispatch<AppDispatch>();
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const MIN_SEARCH_LENGTH = 3;
     if (e.target.value.length < MIN_SEARCH_LENGTH) {
-      setError("Please enter at least 3 characters");
+      setSearch("");
     } else {
       setSearch(e.target.value);
       dispatch(fetchCountriesByNameThunk(search));
