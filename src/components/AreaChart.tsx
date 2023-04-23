@@ -100,10 +100,14 @@ function AreaChart() {
         </button>
       </div>
       <div className="p-5 flex flex-col items-center justify-center max-h-[75%]">
-        <h2 className="pt-4 text-center mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+        <h2 className="pt-12 text-center mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
           Areas of {region}
         </h2>
-        <Chart className="bg-white" data={data} type={"doughnut"} />
+        <Chart
+          className="bg-white max-w-[75%] max-h-[89%]"
+          data={data}
+          type={"pie"}
+        />
       </div>
     </div>
   );

@@ -8,12 +8,14 @@ export interface countriesState {
   items: Country[];
   isLoading: boolean;
   region: string;
+  name: string;
 }
 
 const initialState: countriesState = {
   items: [],
   isLoading: false,
   region: "",
+  name: "",
 };
 
 export const fetchCountriesThunk = createAsyncThunk(
@@ -21,7 +23,6 @@ export const fetchCountriesThunk = createAsyncThunk(
   async () => {
     const url = "http://localhost:3001/countries";
     const response = await axios.get(url);
-
     return {
       data: response.data as Country[],
       status: response.status,
@@ -33,6 +34,18 @@ export const fetchCountriesByRegionThunk = createAsyncThunk(
   "countries/fetchByRegion",
   async (region: string) => {
     const url = `http://localhost:3001/countries/${region}`;
+    const response = await axios.get(url);
+    return {
+      data: response.data,
+      status: response.status,
+    };
+  }
+);
+
+export const fetchCountriesByNameThunk = createAsyncThunk(
+  "countries/fetchByName",
+  async (name: string) => {
+    const url = `http://localhost:3001/countries/name/${name}`;
     const response = await axios.get(url);
     return {
       data: response.data,
@@ -72,6 +85,10 @@ export const countriesSlice = createSlice({
       state.items = action.payload.data;
       state.isLoading = false;
       state.region = action.meta.arg;
+    });
+    builder.addCase(fetchCountriesByNameThunk.fulfilled, (state, action) => {
+      state.items = action.payload.data;
+      state.isLoading = false;
     });
   },
 });

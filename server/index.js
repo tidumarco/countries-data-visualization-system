@@ -32,6 +32,20 @@ app.get("/countries/:region", async (req, res) => {
   }
 });
 
+app.get("/countries/name/:name", async (req, res) => {
+  const name = req.params.name;
+  try {
+    const response = await axios.get(
+      `https://restcountries.com/v3.1/name/${name}?fields=name,region,capital,population,flags,languages,cca2,cca3,currencies,subregion,latlng,area,coatOfArms`
+    );
+    const data = response.data;
+    res.send(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error fetching data from API");
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
 });
