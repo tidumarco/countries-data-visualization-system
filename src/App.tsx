@@ -8,7 +8,7 @@ import RegionBars from "./pages/RegionBars";
 import NoMatch from "./pages/NoMatch";
 import RegionPie from "./pages/RegionPie";
 
-export default function App() {
+function App() {
   return (
     <div
       className="bg-cover bg-fixed bg-center"
@@ -29,3 +29,5 @@ export default function App() {
     </div>
   );
 }
+
+export default App;

@@ -18,6 +18,7 @@ app.get("/countries", async (req, res) => {
     res.status(500).send("Error fetching data from API");
   }
 });
+
 app.get("/countries/:region", async (req, res) => {
   const region = req.params.region;
   try {

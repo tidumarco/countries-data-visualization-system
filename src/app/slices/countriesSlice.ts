@@ -1,14 +1,20 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {
+  createAsyncThunk,
+  createSelector,
+  createSlice,
+} from "@reduxjs/toolkit";
 
 import axios from "axios";
 
 import { Country } from "../../types";
+import { RootState } from "../store";
 
 export interface countriesState {
   items: Country[];
   isLoading: boolean;
   region: string;
   name: string;
+  error: string | undefined;
 }
 
 const initialState: countriesState = {
@@ -16,7 +22,21 @@ const initialState: countriesState = {
   isLoading: false,
   region: "",
   name: "",
+  error: "",
 };
+
+export const selectCountries = (state: RootState) => state.countries;
+
+export const selectFilteredCountriesByName = createSelector(
+  selectCountries,
+  (countries: countriesState) => {
+    const { items, name } = countries;
+    const filteredCountries = items.filter((country) =>
+      country.name.common.toLowerCase().includes(name.toLowerCase())
+    );
+    return filteredCountries;
+  }
+);
 
 export const fetchCountriesThunk = createAsyncThunk(
   "countries/fetch",
@@ -89,6 +109,10 @@ export const countriesSlice = createSlice({
     builder.addCase(fetchCountriesByNameThunk.fulfilled, (state, action) => {
       state.items = action.payload.data;
       state.isLoading = false;
+    });
+    builder.addCase(fetchCountriesByNameThunk.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error.message;
     });
   },
 });

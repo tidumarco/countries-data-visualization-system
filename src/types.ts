@@ -24,6 +24,7 @@ export type Country = {
   };
   latlng: number[];
   subregion: string;
+  isLoading: boolean;
 };
 
 export type WorldCountries = Pick<Country, "region">;

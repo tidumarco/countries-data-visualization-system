@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import BackButton from "../components/BackButton";
 import Footer from "../components/Footer";
 import PopulationChart from "../components/PopulationChart";
 import AreaChart from "../components/AreaChart";
 
-export default function DataRegion() {
-  const [popChart, showPopChart] = React.useState(false);
-  const [areaChart, showAreaChart] = React.useState(false);
+function DataRegion() {
+  const [popChart, showPopChart] = useState(false);
+  const [areaChart, showAreaChart] = useState(false);
 
   const handlePopChart = () => {
     showPopChart(true);
@@ -62,3 +62,5 @@ export default function DataRegion() {
     </div>
   );
 }
+
+export default DataRegion;
