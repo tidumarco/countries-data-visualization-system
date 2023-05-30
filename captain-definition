@@ -1,5 +1,4 @@
 {
-  schemaVersion: 2;
-  frontend: skipBuild: true;
-  containerPort: 80;
-}
+	"schemaVersion": 2,
+	"templateId": "node/8.7.0"
+   }
