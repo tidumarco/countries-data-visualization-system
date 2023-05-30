@@ -28,8 +28,6 @@ export default function DataCountry() {
     setSearch(inputValue);
   };
 
-  console.log("Search", search);
-
   if (filteredCountry.length === 0) {
     return (
       <>
