@@ -1,0 +1,4 @@
+schemaVersion: 2
+frontend:
+  skipBuild: true
+  containerPort: 80
