@@ -1,11 +1,13 @@
 export const flagStyles: React.CSSProperties = {
-  height: "100px",
-  display: "flex",
+  height: 100,
+  width: 140,
+  alignSelf: "center",
 };
 
 export const coatOfArmsStyles: React.CSSProperties = {
-  height: "50px",
-  display: "flex",
+  height: 50,
+  width: 50,
+  alignSelf: "center",
 };
 
 export const tableMapStyles =

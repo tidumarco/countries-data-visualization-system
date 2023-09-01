@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import { useAppDispatch } from "../app/hooks";
 import { deleteAllCountries } from "../app/slices/countriesSlice";
 
-function Home() {
+export default function Home() {
   const dispatch = useAppDispatch();
   return (
     <div className="flex flex-col min-h-screen">
@@ -39,5 +39,3 @@ function Home() {
     </div>
   );
 }
-
-export default Home;
