@@ -92,6 +92,9 @@ export const countriesSlice = createSlice({
       const sortedItems = state.items.sort(compare);
       state.items = sortedItems;
     },
+    deleteAllCountries: (state, action) => {
+      state.items = [];
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchCountriesThunk.pending, (state) => {
@@ -117,5 +120,5 @@ export const countriesSlice = createSlice({
   },
 });
 
-export const { handleSort } = countriesSlice.actions;
+export const { handleSort, deleteAllCountries } = countriesSlice.actions;
 export default countriesSlice.reducer;

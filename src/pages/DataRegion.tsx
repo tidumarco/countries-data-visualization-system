@@ -19,10 +19,10 @@ function DataRegion() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col" style={{ display: "flex", height: "100vh" }}>
       <div className="overflow-hidden flex-grow">
         <BackButton />
-        <h1 className="text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+        <h1 className="text-center mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-white">
           Data by region
         </h1>
         <p className="text-center mb-6 font-normal text-gray-700 dark:text-gray-400 flex justify-center w-screen">

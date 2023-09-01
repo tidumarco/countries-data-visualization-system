@@ -28,34 +28,12 @@ export default function DataCountry() {
     setSearch(inputValue);
   };
 
-  if (filteredCountry.length === 0) {
-    return (
-      <>
-        <div>
-          <BackButton />
-        </div>
-        <div className="h-screen">
-          <h1 className="text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-            Data by country
-          </h1>
-          <div className="m-2 flex flex-col items-center justify-center">
-            <h5 className="text-center mb-6 text-lg font-normal text-gray-800 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
-              Please search for a country...
-            </h5>
-            <SearchAppBar handleChange={debounce(onChange, 300)} />
-          </div>
-        </div>
-        <Footer />
-      </>
-    );
-  }
-
   return (
     <>
       <div>
         <BackButton />
       </div>
-      <h1 className="text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+      <h1 className="text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">
         Data by country
       </h1>
       <div className="m-2 flex flex-col items-center justify-center">
@@ -63,8 +41,8 @@ export default function DataCountry() {
           Please search for a country...
         </h5>
         <SearchAppBar handleChange={debounce(onChange, 300)} />
-        <div className="p-5">
-          <CountryTable filter={filteredCountry} />
+        <div className="p-5" style={{ display: "flex", height: "70vh" }}>
+          {filteredCountry && <CountryTable filter={filteredCountry} />}
         </div>
       </div>
 

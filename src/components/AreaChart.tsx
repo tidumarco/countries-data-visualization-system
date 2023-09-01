@@ -98,10 +98,13 @@ function AreaChart() {
         <RegionButton value="Asia" className={middleButtonStyles} />
         <RegionButton value="Oceania" className={lastButtonStyles} />
       </div>
-      <div className="p-5 flex flex-col items-center justify-center max-h-[75%]">
-        <h2 className="pt-12 text-center mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-          Areas of {region}
-        </h2>
+      <h2 className="pt-12 text-center mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+        Areas of {region}
+      </h2>
+      <div
+        className="p-5"
+        style={{ display: "flex", height: "60vh", justifyContent: "center" }}
+      >
         <Chart
           className="bg-white max-w-[75%] max-h-[89%]"
           data={data}

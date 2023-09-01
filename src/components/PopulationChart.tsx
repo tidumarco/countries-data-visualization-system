@@ -98,7 +98,10 @@ function PopulationChart() {
         <RegionButton value="Asia" className={middleButtonStyles} />
         <RegionButton value="Oceania" className={lastButtonStyles} />
       </div>
-      <div className="p-4 flex-col justify-center">
+      <div
+        className="p-4"
+        style={{ display: "flex", height: "60vh", justifyContent: "center" }}
+      >
         <Chart className="bg-white" data={data} type={"bar"} />
       </div>
     </div>
